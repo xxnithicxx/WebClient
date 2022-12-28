@@ -1,13 +1,14 @@
 package GUI;
 
+import Entity.RequestManager;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
-import java.net.Socket;
 
 public class MainMenu {
-    private Socket connectionSocket;
+    private final RequestManager requestManager = new RequestManager();
 
     public MainMenu() {
         JFrame jFrame = new JFrame("Remote Control");
@@ -31,13 +32,10 @@ public class MainMenu {
         jFrame.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                if (connectionSocket != null) {
-                    try {
-                        connectionSocket.close();
-                    } catch (IOException e) {
-                        JOptionPane.showMessageDialog(null, "There is error in closing TCP connection", "Error",
-                                JOptionPane.ERROR_MESSAGE);
-                    }
+                try {
+                    requestManager.closeAllConnections();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
                 }
             }
         });
@@ -56,7 +54,16 @@ public class MainMenu {
             String link = inputLinkText.getText();
             if (link.equals("")) {
                 JOptionPane.showMessageDialog(null, "Please enter link", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
             }
+
+            try {
+                requestManager.runRequest(link);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+
+            inputLinkText.setText("");
         });
 
         jFrame.add(inputLinkPanel, BorderLayout.CENTER);

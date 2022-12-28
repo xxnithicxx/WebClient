@@ -4,17 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="caa3ef5a-471b-4766-98bb-05bc3f0e9291" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebClient.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Business/HTTPResponseParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Business/HTTPTCPConnection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GUI/MainMenu.java" afterDir="false" />
+    <list default="true" id="caa3ef5a-471b-4766-98bb-05bc3f0e9291" name="Changes" comment="Fix bug with Chunked transfer encoding on some web and fix bug &quot;Connection: keep-alive&quot; header not work as expected (Close when we still using it).&#10;Test and fixing GUI with file downloader&#10;TODO: Folder downloader">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Business/GetDirectoryCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Business/GetFileCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/Command.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/CommandFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/FileSaver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Entity/RequestManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Helper/OpenResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Helper/URLToString.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Business/HTTPTCPConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Business/HTTPTCPConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/MainMenu.java" afterDir="false" />
     </list>
+    <list id="461728a6-f47d-4981-8271-b51a6dc855ea" name="Init Commit" comment="Init Commit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,6 +34,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$PROJECT_DIR$/../../../../../Program Files/Java/jdk-18.0.1.1/lib/src.zip!/java.base/java/io/InputStream.java" root0="SKIP_INSPECTION" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -41,22 +48,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Study/CPP/HK3/MMT/LT",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Study/CPP/HK3/MMT/RemoteControl&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Application.HTTPTCPConnection">
-    <configuration name="HTTPResponseParser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Business.HTTPResponseParser" />
-      <module name="WebClient" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Study\CPP\HK4\OOP\WebClient\src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.MainMenu">
     <configuration name="HTTPTCPConnection" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Business.HTTPTCPConnection" />
       <module name="WebClient" />
@@ -71,11 +78,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RequestManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Entity.RequestManager" />
+      <module name="WebClient" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.HTTPTCPConnection" />
+      <item itemvalue="Application.MainMenu" />
+      <item itemvalue="Application.RequestManager" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.HTTPTCPConnection" />
-        <item itemvalue="Application.HTTPResponseParser" />
         <item itemvalue="Application.MainMenu" />
+        <item itemvalue="Application.HTTPTCPConnection" />
+        <item itemvalue="Application.RequestManager" />
       </list>
     </recent_temporary>
   </component>
@@ -83,11 +102,34 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="caa3ef5a-471b-4766-98bb-05bc3f0e9291" name="Changes" comment="" />
+      <changelist id="461728a6-f47d-4981-8271-b51a6dc855ea" name="Init Commit" comment="" />
       <created>1672145213119</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1672145213119</updated>
     </task>
+    <task id="LOCAL-00001">
+      <created>1672195265244</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1672195265244</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Init to GitHub">
+      <created>1672195355829</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1672195355829</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Init Commit">
+      <created>1672195403701</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1672195403701</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -101,6 +143,14 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Init to GitHub" />
+    <MESSAGE value="Init Commit" />
+    <MESSAGE value="Add FileSaver and Command class to further extend" />
+    <MESSAGE value="Done file dowloader &#10;- Bug not fix: google.com not response with formal header as other website" />
+    <MESSAGE value="Fix bug with Chunked transfer encoding on some web and fix bug &quot;Connection: keep-alive&quot; header not work as expected (Close when we still using it).&#10;Test and fixing GUI with file downloader&#10;TODO: Folder downloader" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix bug with Chunked transfer encoding on some web and fix bug &quot;Connection: keep-alive&quot; header not work as expected (Close when we still using it).&#10;Test and fixing GUI with file downloader&#10;TODO: Folder downloader" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -108,6 +158,11 @@
           <properties class="java.net.UnknownHostException" package="java.net" />
           <option name="timeStamp" value="3" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Business/HTTPTCPConnection.java</url>
+          <line>124</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
