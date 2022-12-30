@@ -1,7 +1,5 @@
 package Helper;
 
-import java.util.Vector;
-
 // Example: http://example.com/index.html
 public class URLToString {
     public static String getHost(String url) {

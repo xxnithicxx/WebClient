@@ -9,11 +9,11 @@ import java.io.IOException;
 
 public class MainMenu {
     private final RequestManager requestManager = new RequestManager();
+    private static boolean isShowDownloaded = false;
 
     public MainMenu() {
         JFrame jFrame = new JFrame("Remote Control");
         jFrame.setMinimumSize(new Dimension(500, 100));
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setLayout(new BorderLayout());
 
         // Set theme for the JFrame
@@ -40,7 +40,6 @@ public class MainMenu {
             }
         });
 
-
         JPanel inputLinkPanel = new JPanel();
         JLabel inputLinkLabel = new JLabel("Input link: ");
         JTextField inputLinkText = new JTextField(50);
@@ -57,11 +56,21 @@ public class MainMenu {
                 return;
             }
 
+            if (!link.matches("http?://.*")) {
+                return;
+            }
+
             try {
                 requestManager.runRequest(link);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
+
+            if (!isShowDownloaded) {
+                SwingUtilities.invokeLater(DownloaderMenu::getInstance);
+                isShowDownloaded = true;
+            }
+
 
             inputLinkText.setText("");
         });
@@ -72,6 +81,10 @@ public class MainMenu {
         jFrame.setLocation(500, 300);
         jFrame.setVisible(true);
         jFrame.pack();
+    }
+
+    public static void setShowDownloaded(boolean showDownloaded) {
+        isShowDownloaded = showDownloaded;
     }
 
     public static void main(String[] args) {

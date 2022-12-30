@@ -4,19 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="caa3ef5a-471b-4766-98bb-05bc3f0e9291" name="Changes" comment="Fix bug with Chunked transfer encoding on some web and fix bug &quot;Connection: keep-alive&quot; header not work as expected (Close when we still using it).&#10;Test and fixing GUI with file downloader&#10;TODO: Folder downloader">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Business/GetDirectoryCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Business/GetFileCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Command.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/CommandFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/FileSaver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/RequestManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Helper/OpenResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Helper/URLToString.java" afterDir="false" />
+    <list default="true" id="caa3ef5a-471b-4766-98bb-05bc3f0e9291" name="Changes" comment="Finish basic requirement and link downloaded menu with MainMenu. Make folder downloader download in parallel with sending request.">
+      <change afterPath="$PROJECT_DIR$/src/Entity/FolderSaver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GUI/DownloaderMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Helper/HTMLToListOfFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebClient.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WebClient.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Business/GetDirectoryCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Business/GetDirectoryCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Business/GetFileCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Business/GetFileCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Business/HTTPTCPConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Business/HTTPTCPConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/CommandFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/CommandFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/FileSaver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/FileSaver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/RequestManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/RequestManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Helper/OpenResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Helper/OpenResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Helper/URLToString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Helper/URLToString.java" afterDir="false" />
     </list>
     <list id="461728a6-f47d-4981-8271-b51a6dc855ea" name="Init Commit" comment="Init Commit" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,6 +43,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2JUuuVYARCplajA5g6TSvBI2gAM" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -53,17 +59,30 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Study/CPP/HK3/MMT/RemoteControl&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Study/CPP/HK4/OOP/WebClient/src/Resource&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Study\CPP\HK4\OOP\WebClient\src\Resource\" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Study\CPP\HK4\OOP\WebClient\src" />
     </key>
   </component>
   <component name="RunManager" selected="Application.MainMenu">
+    <configuration name="DownloaderMenu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GUI.DownloaderMenu" />
+      <module name="WebClient" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="HTTPTCPConnection" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Business.HTTPTCPConnection" />
       <module name="WebClient" />
@@ -78,6 +97,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MultithreadingExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MultithreadingExample" />
+      <module name="WebClient" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="RequestManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Entity.RequestManager" />
       <module name="WebClient" />
@@ -86,15 +112,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.DownloaderMenu" />
+      <item itemvalue="Application.RequestManager" />
+      <item itemvalue="Application.MultithreadingExample" />
       <item itemvalue="Application.HTTPTCPConnection" />
       <item itemvalue="Application.MainMenu" />
-      <item itemvalue="Application.RequestManager" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.MainMenu" />
-        <item itemvalue="Application.HTTPTCPConnection" />
+        <item itemvalue="Application.DownloaderMenu" />
         <item itemvalue="Application.RequestManager" />
+        <item itemvalue="Application.MultithreadingExample" />
+        <item itemvalue="Application.HTTPTCPConnection" />
       </list>
     </recent_temporary>
   </component>
@@ -129,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672195403701</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Fix bug with Chunked transfer encoding on some web and fix bug &quot;Connection: keep-alive&quot; header not work as expected (Close when we still using it).&#10;Test and fixing GUI with file downloader&#10;TODO: Folder downloader">
+      <created>1672250787316</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1672250787316</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -149,21 +186,8 @@
     <MESSAGE value="Add FileSaver and Command class to further extend" />
     <MESSAGE value="Done file dowloader &#10;- Bug not fix: google.com not response with formal header as other website" />
     <MESSAGE value="Fix bug with Chunked transfer encoding on some web and fix bug &quot;Connection: keep-alive&quot; header not work as expected (Close when we still using it).&#10;Test and fixing GUI with file downloader&#10;TODO: Folder downloader" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix bug with Chunked transfer encoding on some web and fix bug &quot;Connection: keep-alive&quot; header not work as expected (Close when we still using it).&#10;Test and fixing GUI with file downloader&#10;TODO: Folder downloader" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.net.UnknownHostException" package="java.net" />
-          <option name="timeStamp" value="3" />
-        </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Business/HTTPTCPConnection.java</url>
-          <line>124</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Done Folder Downloader and add Thread communication with TCP socket&#10;Bug: Close thread when still download file" />
+    <MESSAGE value="Finish basic requirement and link downloaded menu with MainMenu. Make folder downloader download in parallel with sending request." />
+    <option name="LAST_COMMIT_MESSAGE" value="Finish basic requirement and link downloaded menu with MainMenu. Make folder downloader download in parallel with sending request." />
   </component>
 </project>

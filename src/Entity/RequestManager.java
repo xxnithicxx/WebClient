@@ -1,6 +1,7 @@
 package Entity;
 
 import Business.HTTPTCPConnection;
+import GUI.DownloaderMenu;
 import Helper.URLToString;
 
 import java.io.IOException;
@@ -8,7 +9,8 @@ import java.util.Vector;
 
 // This class is responsible for managing the requests and TCP connections, all work is delegated to Command objects
 public class RequestManager {
-    Vector<HTTPTCPConnection> activeConnections = new Vector<>();
+    final Vector<HTTPTCPConnection> activeConnections = new Vector<>();
+    final Vector<Thread> activeThreads = new Vector<>();
 
     public HTTPTCPConnection addRequest(String url) throws IOException {
         String host = URLToString.getHost(url);
@@ -16,13 +18,11 @@ public class RequestManager {
 
         for (HTTPTCPConnection connection : activeConnections) {
             if (connection.getHost().equals(host)) {
-                connection.setRequestFile(url);
                 return connection;
             }
         }
 
         HTTPTCPConnection newConnection = new HTTPTCPConnection(url);
-        newConnection.setRequestFile(url);
         activeConnections.add(newConnection);
 
         return newConnection;
@@ -32,6 +32,10 @@ public class RequestManager {
         for (HTTPTCPConnection connection : activeConnections) {
             connection.closeConnection();
         }
+
+        for (Thread thread : activeThreads) {
+            thread.interrupt();
+        }
     }
 
     public void runRequest(String url) throws IOException {
@@ -40,8 +44,12 @@ public class RequestManager {
 
         command.setConnection(connection);
         command.setUrl(url);
+        command.setDownloaderMenu(DownloaderMenu.getInstance());
 
-        command.execute();
+//        Run the command in a new thread
+        Thread thread = new Thread(command);
+        activeThreads.add(thread);
+        thread.start();
     }
 
     public void checkConnections() {
